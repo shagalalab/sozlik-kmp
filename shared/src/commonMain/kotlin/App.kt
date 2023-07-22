@@ -8,46 +8,47 @@ import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import com.myapplication.common.CommonRes
 
 @Composable
 fun App() {
     MaterialTheme {
         Scaffold(
             topBar = {
-                TopAppBar(title = { Text("Sózlik") })
+                TopAppBar(title = { Text(CommonRes.string.app_name) })
             },
             bottomBar = {
-                var currentTab by remember { mutableStateOf("Home") }
+                var currentTab by remember { mutableStateOf(CommonRes.string.search) }
                 BottomNavigation {
                     BottomNavigationItem(
-                        icon = { Icon(Icons.Filled.Home, contentDescription = null) },
-                        label = { Text("Home") },
-                        selected = currentTab == "Home",
+                        icon = { Icon(Icons.Filled.Search, contentDescription = null) },
+                        label = { Text(CommonRes.string.search) },
+                        selected = currentTab == CommonRes.string.search,
                         onClick = {
-                            currentTab = "Home"
+                            currentTab = CommonRes.string.search
                         }
                     )
                     BottomNavigationItem(
                         icon = { Icon(Icons.Filled.Favorite, contentDescription = null) },
-                        label = { Text("Favourites") },
-                        selected = currentTab == "Favourites",
+                        label = { Text(CommonRes.string.favorites) },
+                        selected = currentTab == CommonRes.string.favorites,
                         onClick = {
-                            currentTab = "Favourites"
+                            currentTab = CommonRes.string.favorites
                         }
                     )
                     BottomNavigationItem(
                         icon = { Icon(Icons.Filled.Settings, contentDescription = null) },
-                        label = { Text("Settings") },
-                        selected = currentTab == "Settings",
+                        label = { Text(CommonRes.string.settings) },
+                        selected = currentTab == CommonRes.string.settings,
                         onClick = {
-                            currentTab = "Settings"
+                            currentTab = CommonRes.string.settings
                         }
                     )
                 }

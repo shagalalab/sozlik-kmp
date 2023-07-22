@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.cocoapods)
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.compose)
+    alias(libs.plugins.libres)
 }
 
 kotlin {
@@ -79,4 +80,11 @@ android {
     kotlin {
         jvmToolchain(17)
     }
+}
+
+libres {
+    generatedClassName = "CommonRes" // "Res" by default
+    generateNamedArguments = true // false by default
+    baseLocaleLanguageCode = "en" // "en" by default
+    camelCaseNamesForAppleFramework = true // false by default
 }

@@ -3,6 +3,7 @@ appcompat = "1.6.1"
 compose = "1.4.1"
 gradle = "8.0.2"
 kotlin = "1.8.20"
+libres = "1.1.8"
 
 [libraries]
 compose_activity = { module = "androidx.activity:activity-compose", version.ref = "appcompat" }
@@ -14,3 +15,4 @@ android_library = { id = "com.android.library", version.ref = "gradle" }
 jetbrains_compose = { id = "org.jetbrains.compose", version.ref = "compose" }
 kotlin_cocoapods = { id = "org.jetbrains.kotlin.native.cocoapods", version.ref = "kotlin" }
 kotlin_multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+libres = { id = "io.github.skeptick.libres", version.ref = "libres" }

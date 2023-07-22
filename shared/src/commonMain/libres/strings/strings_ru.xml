@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Sózlik</string>
+    <string name="search">Излеў</string>
+    <string name="favorites">Сайландылар</string>
+    <string name="settings">Сазлаўлар</string>
+</resources>
