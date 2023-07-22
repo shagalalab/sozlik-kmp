@@ -1,0 +1,16 @@
+[versions]
+appcompat = "1.6.1"
+compose = "1.4.1"
+gradle = "8.0.2"
+kotlin = "1.8.20"
+
+[libraries]
+compose_activity = { module = "androidx.activity:activity-compose", version.ref = "appcompat" }
+appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
+
+[plugins]
+android_application = { id = "com.android.application", version.ref = "gradle" }
+android_library = { id = "com.android.library", version.ref = "gradle" }
+jetbrains_compose = { id = "org.jetbrains.compose", version.ref = "compose" }
+kotlin_cocoapods = { id = "org.jetbrains.kotlin.native.cocoapods", version.ref = "kotlin" }
+kotlin_multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
