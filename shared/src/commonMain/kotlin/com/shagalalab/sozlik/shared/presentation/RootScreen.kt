@@ -16,7 +16,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import com.arkivanov.decompose.extensions.compose.jetbrains.stack.Children
 import com.arkivanov.decompose.extensions.compose.jetbrains.subscribeAsState
-import com.myapplication.common.CommonRes
+import com.shagalalab.sozlik.common.CommonRes
 import com.shagalalab.sozlik.shared.domain.component.RootComponent
 import com.shagalalab.sozlik.shared.presentation.favorites.FavoritesScreen
 import com.shagalalab.sozlik.shared.presentation.search.SearchScreen

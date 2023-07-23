@@ -1,16 +1,24 @@
 [versions]
+android_compile_sdk = "34"
+android_min_sdk = "24"
+android_target_sdk = "34"
 appcompat = "1.6.1"
 compose = "1.4.1"
 decompose = "2.1.0-compose-experimental-alpha-05"
 gradle = "8.0.2"
 kotlin = "1.8.20"
 libres = "1.1.8"
+sqldelight = "1.5.5"
 
 [libraries]
 compose_activity = { module = "androidx.activity:activity-compose", version.ref = "appcompat" }
 appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
 decompose = { module = "com.arkivanov.decompose:decompose", version.ref = "decompose" }
 decompose_compose = { module = "com.arkivanov.decompose:extensions-compose-jetbrains", version.ref = "decompose" }
+sqldelight_android = { module = "com.squareup.sqldelight:android-driver", version.ref = "sqldelight" }
+sqldelight_jvm = { module = "com.squareup.sqldelight:sqlite-driver", version.ref = "sqldelight" }
+sqldelight_native = { module = "com.squareup.sqldelight:native-driver", version.ref = "sqldelight" }
+sqldelight_runtime = { module = "com.squareup.sqldelight:runtime", version.ref = "sqldelight" }
 
 [plugins]
 android_application = { id = "com.android.application", version.ref = "gradle" }
@@ -20,3 +28,4 @@ kotlin_cocoapods = { id = "org.jetbrains.kotlin.native.cocoapods", version.ref =
 kotlin_multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 libres = { id = "io.github.skeptick.libres", version.ref = "libres" }
 parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
+sqldelight = { id = "com.squareup.sqldelight", version.ref = "sqldelight" }

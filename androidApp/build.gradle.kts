@@ -17,17 +17,17 @@ kotlin {
 }
 
 android {
-    compileSdk = (findProperty("android.compileSdk") as String).toInt()
+    compileSdk = libs.versions.android.compile.sdk.get().toInt()
     namespace = "com.shagalalab.sozlik"
 
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
 
     defaultConfig {
         applicationId = "com.shagalalab.sozlik.MyApplication"
-        minSdk = (findProperty("android.minSdk") as String).toInt()
-        targetSdk = (findProperty("android.targetSdk") as String).toInt()
+        minSdk = libs.versions.android.min.sdk.get().toInt()
+        targetSdk = libs.versions.android.target.sdk.get().toInt()
         versionCode = 1
-        versionName = "1.0"
+        versionName = "0.1"
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17

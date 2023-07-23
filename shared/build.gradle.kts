@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.jetbrains.compose)
     alias(libs.plugins.libres)
     alias(libs.plugins.parcelize)
+    alias(libs.plugins.sqldelight)
 }
 
 kotlin {
@@ -39,12 +40,14 @@ kotlin {
                 implementation(compose.components.resources)
                 implementation(libs.decompose)
                 implementation(libs.decompose.compose)
+                implementation(libs.sqldelight.runtime)
             }
         }
         val androidMain by getting {
             dependencies {
                 api(libs.appcompat)
                 api(libs.compose.activity)
+                implementation(libs.sqldelight.android)
             }
         }
         val iosX64Main by getting
@@ -55,26 +58,30 @@ kotlin {
             iosX64Main.dependsOn(this)
             iosArm64Main.dependsOn(this)
             iosSimulatorArm64Main.dependsOn(this)
+            dependencies {
+                implementation(libs.sqldelight.native)
+            }
         }
         val desktopMain by getting {
             dependencies {
                 implementation(compose.desktop.common)
+                implementation(libs.sqldelight.jvm)
             }
         }
     }
 }
 
 android {
-    compileSdk = (findProperty("android.compileSdk") as String).toInt()
-    namespace = "com.myapplication.common"
+    compileSdk = libs.versions.android.compile.sdk.get().toInt()
+    namespace = "com.shagalalab.sozlik.common"
 
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     sourceSets["main"].res.srcDirs("src/androidMain/res")
     sourceSets["main"].resources.srcDirs("src/commonMain/resources")
 
     defaultConfig {
-        minSdk = (findProperty("android.minSdk") as String).toInt()
-        targetSdk = (findProperty("android.targetSdk") as String).toInt()
+        minSdk = libs.versions.android.min.sdk.get().toInt()
+        targetSdk = libs.versions.android.target.sdk.get().toInt()
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
@@ -90,4 +97,10 @@ libres {
     generateNamedArguments = true // false by default
     baseLocaleLanguageCode = "en" // "en" by default
     camelCaseNamesForAppleFramework = true // false by default
+}
+
+sqldelight {
+    database("SozlikDatabase") {
+        packageName = "com.shagalalab.sozlik"
+    }
 }
