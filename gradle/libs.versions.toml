@@ -1,6 +1,7 @@
 [versions]
 appcompat = "1.6.1"
 compose = "1.4.1"
+decompose = "2.1.0-compose-experimental-alpha-05"
 gradle = "8.0.2"
 kotlin = "1.8.20"
 libres = "1.1.8"
@@ -8,6 +9,8 @@ libres = "1.1.8"
 [libraries]
 compose_activity = { module = "androidx.activity:activity-compose", version.ref = "appcompat" }
 appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
+decompose = { module = "com.arkivanov.decompose:decompose", version.ref = "decompose" }
+decompose_compose = { module = "com.arkivanov.decompose:extensions-compose-jetbrains", version.ref = "decompose" }
 
 [plugins]
 android_application = { id = "com.android.application", version.ref = "gradle" }
