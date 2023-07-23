@@ -5,16 +5,16 @@ import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import com.arkivanov.decompose.defaultComponentContext
 import com.shagalalab.sozlik.shared.MainView
-import com.shagalalab.sozlik.shared.RealSearchComponent
+import com.shagalalab.sozlik.shared.domain.component.RootComponentImpl
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val searchComponent = RealSearchComponent(defaultComponentContext())
+        val rootComponent = RootComponentImpl(defaultComponentContext())
 
         setContent {
-            MainView(searchComponent)
+            MainView(rootComponent)
         }
     }
 }

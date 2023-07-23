@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.compose)
     alias(libs.plugins.libres)
+    alias(libs.plugins.parcelize)
 }
 
 kotlin {

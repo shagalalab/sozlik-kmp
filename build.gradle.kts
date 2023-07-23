@@ -7,4 +7,5 @@ plugins {
     alias(libs.plugins.kotlin.cocoapods) apply false
     alias(libs.plugins.jetbrains.compose) apply false
     alias(libs.plugins.libres) apply false
+    alias(libs.plugins.parcelize) apply false
 }

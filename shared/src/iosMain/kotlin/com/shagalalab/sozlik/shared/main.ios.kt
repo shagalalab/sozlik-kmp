@@ -1,16 +1,18 @@
+
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.ui.window.ComposeUIViewController
 import com.arkivanov.decompose.DefaultComponentContext
 import com.arkivanov.essenty.lifecycle.LifecycleRegistry
 import com.arkivanov.essenty.lifecycle.destroy
 import com.arkivanov.essenty.lifecycle.resume
-import com.shagalalab.sozlik.shared.RealSearchComponent
+import com.shagalalab.sozlik.shared.App
+import com.shagalalab.sozlik.shared.domain.component.RootComponentImpl
 import platform.UIKit.UIViewController
 
 fun MainViewController(): UIViewController {
     val lifecycle = LifecycleRegistry()
     val context = DefaultComponentContext(lifecycle = lifecycle)
-    val root = RealSearchComponent(context)
+    val root = RootComponentImpl(context)
 
     return ComposeUIViewController {
         App(root)
