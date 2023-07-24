@@ -1,13 +1,18 @@
 package com.shagalalab.sozlik.android
 
 import android.app.Application
-import com.shagalalab.sozlik.shared.data.datastore.appContext
+import com.shagalalab.sozlik.shared.di.initKoin
+import org.koin.android.ext.koin.androidContext
+import org.koin.android.ext.koin.androidLogger
 
 class SozlikApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
 
-        appContext = this
+        initKoin {
+            androidLogger()
+            androidContext(this@SozlikApplication)
+        }
     }
 }

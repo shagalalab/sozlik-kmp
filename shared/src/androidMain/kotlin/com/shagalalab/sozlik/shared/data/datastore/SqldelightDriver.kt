@@ -5,6 +5,6 @@ import com.shagalalab.sozlik.SozlikDatabase
 import com.squareup.sqldelight.android.AndroidSqliteDriver
 import com.squareup.sqldelight.db.SqlDriver
 
-lateinit var appContext: Context
-
-actual fun createSqldelightDriver(): SqlDriver = AndroidSqliteDriver(SozlikDatabase.Schema, appContext, "sozlik.db")
+internal class AndroidSqldelightDriver(context: Context) : SqldelightDriver {
+    override val driver: SqlDriver = AndroidSqliteDriver(SozlikDatabase.Schema, context, "sozlik.db")
+}

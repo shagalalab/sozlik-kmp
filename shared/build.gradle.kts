@@ -38,9 +38,12 @@ kotlin {
                 implementation(compose.material)
                 @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
                 implementation(compose.components.resources)
+
                 implementation(libs.decompose)
                 implementation(libs.decompose.compose)
                 implementation(libs.sqldelight.runtime)
+
+                api(libs.koin.core)
             }
         }
         val androidMain by getting {

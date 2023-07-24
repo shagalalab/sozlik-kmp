@@ -11,6 +11,7 @@ kotlin {
             dependencies {
                 implementation(project(":shared"))
                 implementation(libs.decompose)
+                implementation(libs.koin.android)
             }
         }
     }
@@ -23,7 +24,7 @@ android {
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
 
     defaultConfig {
-        applicationId = "com.shagalalab.sozlik.MyApplication"
+        applicationId = "com.shagalalab.sozlik"
         minSdk = libs.versions.android.min.sdk.get().toInt()
         targetSdk = libs.versions.android.target.sdk.get().toInt()
         versionCode = 1

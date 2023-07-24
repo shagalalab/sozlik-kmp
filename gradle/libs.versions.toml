@@ -6,6 +6,7 @@ appcompat = "1.6.1"
 compose = "1.4.1"
 decompose = "2.1.0-compose-experimental-alpha-05"
 gradle = "8.0.2"
+koin = "3.2.0"
 kotlin = "1.8.20"
 libres = "1.1.8"
 sqldelight = "1.5.5"
@@ -19,6 +20,8 @@ sqldelight_android = { module = "com.squareup.sqldelight:android-driver", versio
 sqldelight_jvm = { module = "com.squareup.sqldelight:sqlite-driver", version.ref = "sqldelight" }
 sqldelight_native = { module = "com.squareup.sqldelight:native-driver", version.ref = "sqldelight" }
 sqldelight_runtime = { module = "com.squareup.sqldelight:runtime", version.ref = "sqldelight" }
+koin_core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
+koin_android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
 
 [plugins]
 android_application = { id = "com.android.application", version.ref = "gradle" }
