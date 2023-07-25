@@ -1,5 +1,6 @@
 package com.shagalalab.sozlik.shared.di
 
+import com.russhwolf.settings.Settings
 import com.shagalalab.sozlik.SozlikDatabase
 import com.shagalalab.sozlik.shared.data.datastore.LocalDataStore
 import com.shagalalab.sozlik.shared.data.datastore.SqldelightDriver
@@ -25,6 +26,7 @@ private val commonModule = module {
     single { SozlikDatabase(get<SqldelightDriver>().driver) }
     single { LocalDataStore(get()) }
     single<DictionaryRepository> { DictionaryRepositoryImpl(get()) }
+    single { Settings() }
 }
 
 internal expect val platformModule: Module

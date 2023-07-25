@@ -41,6 +41,7 @@ kotlin {
 
                 implementation(libs.decompose)
                 implementation(libs.decompose.compose)
+                implementation(libs.settings)
                 implementation(libs.sqldelight.runtime)
 
                 api(libs.koin.core)
