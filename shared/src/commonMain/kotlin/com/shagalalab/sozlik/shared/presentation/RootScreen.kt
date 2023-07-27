@@ -16,11 +16,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import com.arkivanov.decompose.extensions.compose.jetbrains.stack.Children
 import com.arkivanov.decompose.extensions.compose.jetbrains.subscribeAsState
-import com.shagalalab.sozlik.common.CommonRes
+import com.shagalalab.sozlik.CommonRes
 import com.shagalalab.sozlik.shared.domain.component.RootComponent
 import com.shagalalab.sozlik.shared.presentation.favorites.FavoritesScreen
 import com.shagalalab.sozlik.shared.presentation.search.SearchScreen
 import com.shagalalab.sozlik.shared.presentation.settings.SettingsScreen
+import dev.icerock.moko.resources.compose.stringResource
 
 @Composable
 fun RootScreen(component: RootComponent) {
@@ -29,25 +30,25 @@ fun RootScreen(component: RootComponent) {
 
     Scaffold(
         topBar = {
-            TopAppBar(title = { Text(CommonRes.string.app_name) })
+            TopAppBar(title = { Text(stringResource(CommonRes.strings.app_name)) })
         },
         bottomBar = {
             BottomNavigation {
                 BottomNavigationItem(
                     icon = { Icon(Icons.Filled.Search, contentDescription = null) },
-                    label = { Text(CommonRes.string.search) },
+                    label = { Text(stringResource(CommonRes.strings.search)) },
                     selected = activeComponent is RootComponent.Child.SearchChild,
                     onClick = component::onSearchTabClicked
                 )
                 BottomNavigationItem(
                     icon = { Icon(Icons.Filled.Favorite, contentDescription = null) },
-                    label = { Text(CommonRes.string.favorites) },
+                    label = { Text(stringResource(CommonRes.strings.favorites)) },
                     selected = activeComponent is RootComponent.Child.FavoritesChild,
                     onClick = component::onFavoritesTabClicked
                 )
                 BottomNavigationItem(
                     icon = { Icon(Icons.Filled.Settings, contentDescription = null) },
-                    label = { Text(CommonRes.string.settings) },
+                    label = { Text(stringResource(CommonRes.strings.settings)) },
                     selected = activeComponent is RootComponent.Child.SettingsChild,
                     onClick = component::onSettingsTabClicked
                 )

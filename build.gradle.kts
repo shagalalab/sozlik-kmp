@@ -6,7 +6,13 @@ plugins {
     alias(libs.plugins.kotlin.multiplatform) apply false
     alias(libs.plugins.kotlin.cocoapods) apply false
     alias(libs.plugins.jetbrains.compose) apply false
-    alias(libs.plugins.libres) apply false
     alias(libs.plugins.parcelize) apply false
     alias(libs.plugins.sqldelight) apply false
+    alias(libs.plugins.moko.resources) apply false
+}
+
+buildscript {
+    dependencies {
+        classpath(libs.moko.resources.generator)
+    }
 }

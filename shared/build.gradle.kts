@@ -3,9 +3,9 @@ plugins {
     alias(libs.plugins.kotlin.cocoapods)
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.compose)
-    alias(libs.plugins.libres)
     alias(libs.plugins.parcelize)
     alias(libs.plugins.sqldelight)
+    alias(libs.plugins.moko.resources)
 }
 
 kotlin {
@@ -45,6 +45,8 @@ kotlin {
                 implementation(libs.sqldelight.runtime)
 
                 api(libs.koin.core)
+                api(libs.moko.resources)
+                api(libs.moko.resources.compose)
             }
         }
         val androidMain by getting {
@@ -96,15 +98,13 @@ android {
     }
 }
 
-libres {
-    generatedClassName = "CommonRes" // "Res" by default
-    generateNamedArguments = true // false by default
-    baseLocaleLanguageCode = "en" // "en" by default
-    camelCaseNamesForAppleFramework = true // false by default
-}
-
 sqldelight {
     database("SozlikDatabase") {
         packageName = "com.shagalalab.sozlik"
     }
+}
+
+multiplatformResources {
+    multiplatformResourcesPackage = "com.shagalalab.sozlik" // required
+    multiplatformResourcesClassName = "CommonRes" // optional, default MR
 }
