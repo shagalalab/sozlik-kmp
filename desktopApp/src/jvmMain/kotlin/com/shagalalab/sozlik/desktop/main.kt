@@ -6,7 +6,7 @@ import com.arkivanov.decompose.DefaultComponentContext
 import com.arkivanov.essenty.lifecycle.LifecycleRegistry
 import com.shagalalab.sozlik.shared.MainView
 import com.shagalalab.sozlik.shared.di.initKoin
-import com.shagalalab.sozlik.shared.domain.component.RootComponentImpl
+import com.shagalalab.sozlik.shared.domain.component.root.RootComponentImpl
 
 fun main() {
     initKoin {  }

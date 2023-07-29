@@ -11,8 +11,8 @@ internal fun DictionaryDb.toDomain(): Dictionary {
         word = word,
         rawWord = raw_word,
         translation = translation,
-        isFavorite = is_favorite ?: false,
-        lastAccessed = last_accessed ?: 0
+        isFavorite = is_favorite,
+        lastAccessed = last_accessed
     )
 }
 

@@ -5,7 +5,7 @@ import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import com.arkivanov.decompose.defaultComponentContext
 import com.shagalalab.sozlik.shared.MainView
-import com.shagalalab.sozlik.shared.domain.component.RootComponentImpl
+import com.shagalalab.sozlik.shared.domain.component.root.RootComponentImpl
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

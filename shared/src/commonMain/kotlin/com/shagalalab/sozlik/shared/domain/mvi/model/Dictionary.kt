@@ -4,19 +4,19 @@ data class Dictionary(
     val id: Long,
     val type: DictionaryType,
     val word: String,
-    val rawWord: String,
     val translation: String,
-    val isFavorite: Boolean,
-    val lastAccessed: Long
+    val rawWord: String? = null,
+    val isFavorite: Boolean? = null,
+    val lastAccessed: Long? = null
 )
 
-enum class DictionaryType(val index: Long) {
+enum class DictionaryType(val index: Int) {
     UNKNOWN(0),
     QQ_EN(1),
     RU_QQ(2);
 
     companion object {
-        fun from(index: Long): DictionaryType {
+        fun from(index: Int): DictionaryType {
             return values().firstOrNull { it.index == index } ?: UNKNOWN
         }
     }

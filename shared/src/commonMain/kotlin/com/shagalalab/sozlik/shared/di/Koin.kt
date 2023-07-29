@@ -4,7 +4,10 @@ import com.russhwolf.settings.Settings
 import com.shagalalab.sozlik.SozlikDatabase
 import com.shagalalab.sozlik.shared.data.datastore.LocalDataStore
 import com.shagalalab.sozlik.shared.data.datastore.SqldelightDriver
+import com.shagalalab.sozlik.shared.data.keyvalue.DbPopulatedKeyValue
+import com.shagalalab.sozlik.shared.data.keyvalue.DbPopulatedKeyValueImpl
 import com.shagalalab.sozlik.shared.data.repository.DictionaryRepositoryImpl
+import com.shagalalab.sozlik.shared.domain.mvi.feature.populate.DbPopulateStore
 import com.shagalalab.sozlik.shared.domain.repository.DictionaryRepository
 import org.koin.core.context.startKoin
 import org.koin.core.module.Module
@@ -27,6 +30,8 @@ private val commonModule = module {
     single { LocalDataStore(get()) }
     single<DictionaryRepository> { DictionaryRepositoryImpl(get()) }
     single { Settings() }
+    single<DbPopulatedKeyValue> { DbPopulatedKeyValueImpl(get()) }
+    single { DbPopulateStore(get(), get()) }
 }
 
 internal expect val platformModule: Module

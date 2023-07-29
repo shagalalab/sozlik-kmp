@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.kotlin.cocoapods)
+    alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.compose)
     alias(libs.plugins.parcelize)
@@ -43,7 +44,9 @@ kotlin {
                 implementation(libs.decompose.compose)
                 implementation(libs.settings)
                 implementation(libs.sqldelight.runtime)
+                implementation(libs.serialization.json)
 
+                api(libs.coroutines.core)
                 api(libs.koin.core)
                 api(libs.moko.resources)
                 api(libs.moko.resources.compose)
@@ -71,6 +74,7 @@ kotlin {
         val desktopMain by getting {
             dependencies {
                 implementation(compose.desktop.common)
+                implementation(libs.coroutines.swing)
                 implementation(libs.sqldelight.jvm)
             }
         }

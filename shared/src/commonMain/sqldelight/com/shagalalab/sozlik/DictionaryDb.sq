@@ -1,10 +1,10 @@
 CREATE TABLE DictionaryDb (
     id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    type INTEGER NOT NULL,
+    type INTEGER AS Int NOT NULL,
     word TEXT NOT NULL,
-    raw_word TEXT NOT NULL,
+    raw_word TEXT,
     translation TEXT NOT NULL,
-    is_favorite INTEGER AS Boolean DEFAULT 0,
+    is_favorite INTEGER AS Boolean,
     last_accessed INTEGER
 );
 
@@ -41,7 +41,7 @@ DESC LIMIT 30;
 
 insert:
 INSERT OR IGNORE INTO DictionaryDb(type, word, raw_word, translation)
-VALUES ?;
+VALUES (?, ?, ?, ?);
 
 updateFavorite:
 UPDATE DictionaryDb

@@ -6,7 +6,7 @@ import com.arkivanov.essenty.lifecycle.LifecycleRegistry
 import com.arkivanov.essenty.lifecycle.destroy
 import com.arkivanov.essenty.lifecycle.resume
 import com.shagalalab.sozlik.shared.App
-import com.shagalalab.sozlik.shared.domain.component.RootComponentImpl
+import com.shagalalab.sozlik.shared.domain.component.root.RootComponentImpl
 import platform.UIKit.UIViewController
 
 fun MainViewController(): UIViewController {

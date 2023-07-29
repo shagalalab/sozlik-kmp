@@ -35,7 +35,7 @@ class LocalDataStore(private val database: SozlikDatabase) {
     fun insertData(entries: List<DictionaryDb>) {
         database.dictionaryDbQueries.transaction {
             entries.forEach { entry ->
-                database.dictionaryDbQueries.insert(entry)
+                database.dictionaryDbQueries.insert(entry.type, entry.word, entry.raw_word, entry.translation)
             }
         }
     }
