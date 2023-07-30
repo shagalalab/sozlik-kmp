@@ -8,6 +8,7 @@ import com.shagalalab.sozlik.shared.data.keyvalue.DbPopulatedKeyValue
 import com.shagalalab.sozlik.shared.data.keyvalue.DbPopulatedKeyValueImpl
 import com.shagalalab.sozlik.shared.data.repository.DictionaryRepositoryImpl
 import com.shagalalab.sozlik.shared.domain.mvi.feature.populate.DbPopulateStore
+import com.shagalalab.sozlik.shared.domain.mvi.feature.search.SearchStore
 import com.shagalalab.sozlik.shared.domain.repository.DictionaryRepository
 import org.koin.core.context.startKoin
 import org.koin.core.module.Module
@@ -32,6 +33,7 @@ private val commonModule = module {
     single { Settings() }
     single<DbPopulatedKeyValue> { DbPopulatedKeyValueImpl(get()) }
     single { DbPopulateStore(get(), get()) }
+    single { SearchStore(get()) }
 }
 
 internal expect val platformModule: Module

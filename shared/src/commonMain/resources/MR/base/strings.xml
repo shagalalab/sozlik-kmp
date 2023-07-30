@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Sózlik</string>
-    <string name="search">Izlew</string>
     <string name="favorites">Saylandılar</string>
+    <string name="search">Izlew</string>
+    <string name="search_placeholder">Izlegen sózińizdi kiritiń</string>
     <string name="settings">Sazlawlar</string>
 </resources>

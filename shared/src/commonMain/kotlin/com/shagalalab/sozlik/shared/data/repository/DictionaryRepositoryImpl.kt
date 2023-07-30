@@ -17,7 +17,11 @@ class DictionaryRepositoryImpl(private val dataStore: LocalDataStore): Dictionar
     }
 
     override suspend fun getSuggestions(word: String): Result<List<Dictionary>> {
-        return asResult { dataStore.getItemsLike(word).map { it.toDomain() } }
+        return if (word.isEmpty()) {
+            asResult { listOf() }
+        } else {
+            asResult { dataStore.getItemsLike(word).map { it.toDomain() } }
+        }
     }
 
     override suspend fun getFavorites(): Result<List<Dictionary>> {

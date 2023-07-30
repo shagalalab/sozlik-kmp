@@ -2,7 +2,7 @@ package com.shagalalab.sozlik.shared.domain.mvi.feature.populate
 
 import androidx.compose.ui.text.intl.Locale
 import androidx.compose.ui.text.toLowerCase
-import com.shagalalab.sozlik.shared.data.datastore.DictionaryDeserialized
+import com.shagalalab.sozlik.shared.data.datastore.model.DictionaryDeserialized
 import com.shagalalab.sozlik.shared.data.keyvalue.DbPopulatedKeyValue
 import com.shagalalab.sozlik.shared.domain.mvi.base.Store
 import com.shagalalab.sozlik.shared.domain.mvi.model.Dictionary
