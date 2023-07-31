@@ -5,6 +5,7 @@ import com.arkivanov.decompose.router.stack.ChildStack
 import com.arkivanov.decompose.router.stack.StackNavigation
 import com.arkivanov.decompose.router.stack.bringToFront
 import com.arkivanov.decompose.router.stack.childStack
+import com.arkivanov.decompose.router.stack.push
 import com.arkivanov.decompose.value.Value
 import com.arkivanov.essenty.parcelable.Parcelable
 import com.arkivanov.essenty.parcelable.Parcelize
@@ -14,6 +15,8 @@ import com.shagalalab.sozlik.shared.domain.component.search.SearchComponent
 import com.shagalalab.sozlik.shared.domain.component.search.SearchComponentImpl
 import com.shagalalab.sozlik.shared.domain.component.settings.SettingsComponent
 import com.shagalalab.sozlik.shared.domain.component.settings.SettingsComponentImpl
+import com.shagalalab.sozlik.shared.domain.component.translation.TranslationComponent
+import com.shagalalab.sozlik.shared.domain.component.translation.TranslationComponentImpl
 import com.shagalalab.sozlik.shared.domain.mvi.feature.populate.DbPopulateAction
 import com.shagalalab.sozlik.shared.domain.mvi.feature.populate.DbPopulateStore
 import kotlinx.coroutines.flow.Flow
@@ -34,6 +37,7 @@ interface RootComponent {
         class SearchChild(val component: SearchComponent): Child
         class FavoritesChild(val component: FavoritesComponent): Child
         class SettingsChild(val component: SettingsComponent): Child
+        class TranslationChild(val component: TranslationComponent): Child
     }
 }
 
@@ -69,9 +73,12 @@ class RootComponentImpl(componentContext: ComponentContext) : RootComponent, Koi
 
     private fun child(config: Config, componentContext: ComponentContext): RootComponent.Child =
         when (config) {
-            Config.Search -> RootComponent.Child.SearchChild(SearchComponentImpl(componentContext))
+            Config.Search -> RootComponent.Child.SearchChild(SearchComponentImpl(componentContext, itemClicked = {
+                navigation.push(Config.Translation(it))
+            }))
             Config.Favorite -> RootComponent.Child.FavoritesChild(FavoritesComponentImpl(componentContext))
             Config.Settings -> RootComponent.Child.SettingsChild(SettingsComponentImpl(componentContext))
+            is Config.Translation -> RootComponent.Child.TranslationChild(TranslationComponentImpl(config.id, componentContext))
         }
 
     private sealed interface Config : Parcelable {
@@ -104,5 +111,7 @@ class RootComponentImpl(componentContext: ComponentContext) : RootComponent, Koi
             @Suppress("unused")
             private fun readResolve(): Any = Settings
         }
+        @Parcelize
+        data class Translation(val id: Long): Config
     }
 }
