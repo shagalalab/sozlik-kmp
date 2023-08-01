@@ -30,6 +30,7 @@ import com.shagalalab.sozlik.shared.domain.component.root.RootComponent
 import com.shagalalab.sozlik.shared.presentation.favorites.FavoritesScreen
 import com.shagalalab.sozlik.shared.presentation.search.SearchScreen
 import com.shagalalab.sozlik.shared.presentation.settings.SettingsScreen
+import com.shagalalab.sozlik.shared.presentation.translation.TranslationScreen
 import dev.icerock.moko.resources.compose.readTextAsState
 import dev.icerock.moko.resources.compose.stringResource
 
@@ -80,6 +81,7 @@ fun RootScreen(component: RootComponent) {
                 is RootComponent.Child.SearchChild -> SearchScreen(child.component, padding)
                 is RootComponent.Child.FavoritesChild -> FavoritesScreen(child.component, padding)
                 is RootComponent.Child.SettingsChild -> SettingsScreen(child.component, padding)
+                is RootComponent.Child.TranslationChild -> TranslationScreen(child.component, padding)
             }
         }
 

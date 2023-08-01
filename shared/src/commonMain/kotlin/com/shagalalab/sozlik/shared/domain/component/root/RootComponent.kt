@@ -34,10 +34,10 @@ interface RootComponent {
     fun checkDbPopulated(qqen: String?, ruqq: String?)
 
     sealed interface Child {
-        class SearchChild(val component: SearchComponent): Child
-        class FavoritesChild(val component: FavoritesComponent): Child
-        class SettingsChild(val component: SettingsComponent): Child
-        class TranslationChild(val component: TranslationComponent): Child
+        class SearchChild(val component: SearchComponent) : Child
+        class FavoritesChild(val component: FavoritesComponent) : Child
+        class SettingsChild(val component: SettingsComponent) : Child
+        class TranslationChild(val component: TranslationComponent) : Child
     }
 }
 
@@ -48,6 +48,7 @@ class RootComponentImpl(componentContext: ComponentContext) : RootComponent, Koi
     private val stack = childStack(
         source = navigation,
         initialStack = { listOf(Config.Search) },
+        handleBackButton = true,
         childFactory = ::child
     )
 
@@ -76,6 +77,7 @@ class RootComponentImpl(componentContext: ComponentContext) : RootComponent, Koi
             Config.Search -> RootComponent.Child.SearchChild(SearchComponentImpl(componentContext, itemClicked = {
                 navigation.push(Config.Translation(it))
             }))
+
             Config.Favorite -> RootComponent.Child.FavoritesChild(FavoritesComponentImpl(componentContext))
             Config.Settings -> RootComponent.Child.SettingsChild(SettingsComponentImpl(componentContext))
             is Config.Translation -> RootComponent.Child.TranslationChild(TranslationComponentImpl(config.id, componentContext))
@@ -111,7 +113,8 @@ class RootComponentImpl(componentContext: ComponentContext) : RootComponent, Koi
             @Suppress("unused")
             private fun readResolve(): Any = Settings
         }
+
         @Parcelize
-        data class Translation(val id: Long): Config
+        data class Translation(val id: Long) : Config
     }
 }
