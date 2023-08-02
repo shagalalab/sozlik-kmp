@@ -24,7 +24,7 @@ interface SearchComponent {
     fun onSearchItemClicked(itemId: Long)
 }
 
-class SearchComponentImpl(componentContext: ComponentContext) : ComponentContext by componentContext, SearchComponent, KoinComponent {
+class SearchComponentImpl(componentContext: ComponentContext, private val itemClicked: (id: Long) -> Unit, ) : ComponentContext by componentContext, SearchComponent, KoinComponent {
     private val searchStore: SearchStore by inject()
 
     private val scope = componentCoroutineScope()
@@ -52,6 +52,6 @@ class SearchComponentImpl(componentContext: ComponentContext) : ComponentContext
     }
 
     override fun onSearchItemClicked(itemId: Long) {
-
+        itemClicked(itemId)
     }
 }

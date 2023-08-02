@@ -7,6 +7,7 @@ import com.shagalalab.sozlik.shared.data.datastore.SqldelightDriver
 import com.shagalalab.sozlik.shared.data.keyvalue.DbPopulatedKeyValue
 import com.shagalalab.sozlik.shared.data.keyvalue.DbPopulatedKeyValueImpl
 import com.shagalalab.sozlik.shared.data.repository.DictionaryRepositoryImpl
+import com.shagalalab.sozlik.shared.domain.mvi.feature.feature.TranslationStore
 import com.shagalalab.sozlik.shared.domain.mvi.feature.populate.DbPopulateStore
 import com.shagalalab.sozlik.shared.domain.mvi.feature.search.SearchStore
 import com.shagalalab.sozlik.shared.domain.repository.DictionaryRepository
@@ -34,6 +35,7 @@ private val commonModule = module {
     single<DbPopulatedKeyValue> { DbPopulatedKeyValueImpl(get()) }
     single { DbPopulateStore(get(), get()) }
     single { SearchStore(get()) }
+    single { TranslationStore(get()) }
 }
 
 internal expect val platformModule: Module
