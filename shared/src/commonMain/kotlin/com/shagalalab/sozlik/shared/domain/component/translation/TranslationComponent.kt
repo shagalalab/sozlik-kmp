@@ -1,9 +1,9 @@
 package com.shagalalab.sozlik.shared.domain.component.translation
 
 import com.arkivanov.decompose.ComponentContext
-import com.shagalalab.sozlik.shared.domain.mvi.feature.feature.TranslateAction
-import com.shagalalab.sozlik.shared.domain.mvi.feature.feature.TranslateState
-import com.shagalalab.sozlik.shared.domain.mvi.feature.feature.TranslationStore
+import com.shagalalab.sozlik.shared.domain.mvi.feature.translate.TranslateAction
+import com.shagalalab.sozlik.shared.domain.mvi.feature.translate.TranslateState
+import com.shagalalab.sozlik.shared.domain.mvi.feature.translate.TranslationStore
 import kotlinx.coroutines.flow.StateFlow
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
@@ -33,6 +33,7 @@ class TranslationComponentImpl(
     }
 
     override fun onFavoriteClick() {
-        TODO("Not yet implemented")
+        translationStore.dispatch(TranslateAction.FavoriteWordAction(translationId))
+        getTranslation()
     }
 }

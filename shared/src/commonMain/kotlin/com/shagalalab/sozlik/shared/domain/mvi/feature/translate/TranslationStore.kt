@@ -1,4 +1,4 @@
-package com.shagalalab.sozlik.shared.domain.mvi.feature.feature
+package com.shagalalab.sozlik.shared.domain.mvi.feature.translate
 
 import com.shagalalab.sozlik.shared.domain.mvi.base.Store
 import com.shagalalab.sozlik.shared.domain.repository.DictionaryRepository
@@ -31,6 +31,16 @@ class TranslationStore(
                     oldState.copy(isLoading = false, errorMessage = "Error: $e")
                 }
             }
+            is TranslateAction.FavoriteWordAction -> {
+                val wasFavorite = oldState.translation?.isFavorite ?: false
+                try {
+                    repository.updateFavorite(action.id, !wasFavorite)
+                    oldState
+                } catch (e: Exception) {
+                    oldState.copy(isLoading = false, errorMessage = "Error: $e")
+                }
+            }
         }
     }
+
 }

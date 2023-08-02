@@ -1,4 +1,4 @@
-package com.shagalalab.sozlik.shared.domain.mvi.feature.feature
+package com.shagalalab.sozlik.shared.domain.mvi.feature.translate
 
 import com.shagalalab.sozlik.shared.domain.mvi.base.Action
 import com.shagalalab.sozlik.shared.domain.mvi.base.Effect
@@ -7,6 +7,7 @@ import com.shagalalab.sozlik.shared.domain.mvi.model.Dictionary
 
 sealed interface TranslateAction : Action {
     data class GetWordByIdAction(val id: Long): TranslateAction
+    data class FavoriteWordAction(val id: Long): TranslateAction
 }
 
 data class TranslateState(
