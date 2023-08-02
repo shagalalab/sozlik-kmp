@@ -24,14 +24,13 @@ import com.shagalalab.sozlik.shared.util.parseHtml
 
 @Composable
 fun TranslationScreen(component: TranslationComponent, modifier: Modifier = Modifier) {
-    val dictionary by component.state.collectAsState()
+    val state by component.state.collectAsState()
 
     Column(modifier = modifier.fillMaxWidth().padding(16.dp)) {
-        dictionary.translation?.let {
-            val isFavorite = it.isFavorite ?: false
+        state.translation?.let {
             Row(modifier = modifier.align(alignment = Alignment.End)) {
                 IconButton(onClick = component::onFavoriteClick) {
-                    Icon(if (isFavorite) Icons.Filled.Favorite else Icons.Outlined.FavoriteBorder, contentDescription = null)
+                    Icon(if (state.isFavorite) Icons.Filled.Favorite else Icons.Outlined.FavoriteBorder, contentDescription = null)
                 }
                 IconButton(onClick = {}) {
                     Icon(Icons.Outlined.Share, contentDescription = null)

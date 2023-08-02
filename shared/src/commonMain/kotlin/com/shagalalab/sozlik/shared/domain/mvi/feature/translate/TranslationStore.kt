@@ -20,7 +20,8 @@ class TranslationStore(
                     val result = repository.getTranslation(action.id)
                     when {
                         result.isSuccess -> {
-                            oldState.copy(isLoading = false, translation = result.getOrDefault(null))
+                            val dictionary = result.getOrDefault(null)
+                            oldState.copy(isLoading = false, translation = dictionary, isFavorite = dictionary?.isFavorite ?: false)
                         }
                         result.isFailure -> {
                             oldState.copy(isLoading = false, errorMessage = "Error: ${result.exceptionOrNull()}")
@@ -32,9 +33,8 @@ class TranslationStore(
                 }
             }
             is TranslateAction.FavoriteWordAction -> {
-                val wasFavorite = oldState.translation?.isFavorite ?: false
                 try {
-                    repository.updateFavorite(action.id, !wasFavorite)
+                    repository.updateFavorite(action.id, !oldState.isFavorite)
                     oldState
                 } catch (e: Exception) {
                     oldState.copy(isLoading = false, errorMessage = "Error: $e")

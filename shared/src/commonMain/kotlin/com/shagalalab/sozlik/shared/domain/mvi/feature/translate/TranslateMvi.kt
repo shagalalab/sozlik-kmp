@@ -11,6 +11,7 @@ sealed interface TranslateAction : Action {
 }
 
 data class TranslateState(
+    val isFavorite: Boolean = false,
     val isLoading: Boolean = false,
     val translation: Dictionary? = null,
     val errorMessage: String? = null,
