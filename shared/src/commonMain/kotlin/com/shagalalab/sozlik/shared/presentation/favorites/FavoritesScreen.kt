@@ -25,11 +25,10 @@ import com.shagalalab.sozlik.shared.domain.mvi.model.Dictionary
 @Composable
 fun FavoritesScreen(component: FavoritesComponent, modifier: Modifier = Modifier) {
     val favorites by component.state.collectAsState()
-    Column {
-        LazyColumn(modifier = modifier) {
-            items(favorites.favoriteWords) { word ->
-                FavoriteItem(word, component::onFavoriteItemClicked, component::onFavoriteClicked)
-            }
+
+    LazyColumn(modifier = modifier) {
+        items(favorites.favoriteWords) { word ->
+            FavoriteItem(word, component::onFavoriteItemClicked, component::onFavoriteClicked)
         }
     }
 
@@ -43,7 +42,7 @@ private fun FavoriteItem(word: Dictionary, itemClick: (Long) -> Unit, onFavorite
     Column(modifier = Modifier.clickable { itemClick(word.id) }) {
         Row(modifier = Modifier.padding(horizontal = 16.dp), verticalAlignment = Alignment.CenterVertically) {
             Text(word.word, modifier = Modifier.padding(vertical = 12.dp).weight(1f))
-            IconButton(onClick = {onFavoriteClick(word.id) }) {
+            IconButton(onClick = { onFavoriteClick(word.id) }) {
                 Icon(Icons.Filled.Favorite, contentDescription = null)
             }
         }

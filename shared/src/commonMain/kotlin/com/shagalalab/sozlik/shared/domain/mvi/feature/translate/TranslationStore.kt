@@ -35,7 +35,7 @@ class TranslationStore(
             is TranslateAction.FavoriteWordAction -> {
                 try {
                     repository.updateFavorite(action.id, !oldState.isFavorite)
-                    oldState
+                    oldState.copy(isLoading = false, isFavorite = !oldState.isFavorite)
                 } catch (e: Exception) {
                     oldState.copy(isLoading = false, errorMessage = "Error: $e")
                 }

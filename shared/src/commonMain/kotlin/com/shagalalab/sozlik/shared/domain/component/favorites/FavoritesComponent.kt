@@ -10,17 +10,18 @@ import org.koin.core.component.inject
 
 interface FavoritesComponent {
     val state: StateFlow<FavoritesState>
+
     fun getFavorites()
     fun onFavoriteItemClicked(id: Long)
     fun onFavoriteClicked(id: Long)
 }
 
-class FavoritesComponentImpl(componentContext: ComponentContext, private val itemClicked: (id: Long) -> Unit,) :
-    ComponentContext by componentContext,
-    FavoritesComponent, KoinComponent {
+class FavoritesComponentImpl(
+    componentContext: ComponentContext,
+    private val itemClicked: (id: Long) -> Unit
+) : ComponentContext by componentContext, FavoritesComponent, KoinComponent {
     private val favoritesStore: FavoritesStore by inject()
-    override val state: StateFlow<FavoritesState>
-        get() = favoritesStore.stateFlow
+    override val state: StateFlow<FavoritesState> = favoritesStore.stateFlow
 
     override fun getFavorites() {
         favoritesStore.dispatch(FavoritesAction.LoadFavoritesAction)

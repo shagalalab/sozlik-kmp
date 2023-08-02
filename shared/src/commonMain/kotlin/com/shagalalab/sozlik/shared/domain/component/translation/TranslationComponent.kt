@@ -34,6 +34,5 @@ class TranslationComponentImpl(
 
     override fun onFavoriteClick() {
         translationStore.dispatch(TranslateAction.FavoriteWordAction(translationId))
-        getTranslation()
     }
 }
