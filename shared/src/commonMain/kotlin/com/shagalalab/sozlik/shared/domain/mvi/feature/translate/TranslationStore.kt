@@ -16,30 +16,34 @@ class TranslationStore(
         return when(action) {
             is TranslateAction.GetWordByIdAction -> {
                 emitState(oldState.copy(isLoading = true))
-                try {
-                    val result = repository.getTranslation(action.id)
-                    when {
-                        result.isSuccess -> {
-                            val dictionary = result.getOrDefault(null)
-                            oldState.copy(isLoading = false, translation = dictionary, isFavorite = dictionary?.isFavorite ?: false)
-                        }
-                        result.isFailure -> {
-                            oldState.copy(isLoading = false, errorMessage = "Error: ${result.exceptionOrNull()}")
-                        }
-                        else -> oldState
-                    }
-                } catch (e: Exception) {
-                    oldState.copy(isLoading = false, errorMessage = "Error: $e")
-                }
+                getTranslationState(action.id, oldState)
             }
             is TranslateAction.FavoriteWordAction -> {
                 try {
                     repository.updateFavorite(action.id, !oldState.isFavorite)
-                    oldState.copy(isLoading = false, isFavorite = !oldState.isFavorite)
+                    getTranslationState(action.id, oldState)
                 } catch (e: Exception) {
                     oldState.copy(isLoading = false, errorMessage = "Error: $e")
                 }
             }
+        }
+    }
+
+    private suspend fun getTranslationState(id: Long, state: TranslateState): TranslateState {
+        return try {
+            val result = repository.getTranslation(id)
+            when {
+                result.isSuccess -> {
+                    val dictionary = result.getOrDefault(null)
+                    state.copy(isLoading = false, translation = dictionary, isFavorite = dictionary?.isFavorite ?: false)
+                }
+                result.isFailure -> {
+                    state.copy(isLoading = false, errorMessage = "Error: ${result.exceptionOrNull()}")
+                }
+                else -> state
+            }
+        } catch (e: Exception) {
+            state.copy(isLoading = false, errorMessage = "Error: $e")
         }
     }
 

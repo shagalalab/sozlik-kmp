@@ -5,7 +5,7 @@ import com.arkivanov.decompose.router.stack.ChildStack
 import com.arkivanov.decompose.router.stack.StackNavigation
 import com.arkivanov.decompose.router.stack.bringToFront
 import com.arkivanov.decompose.router.stack.childStack
-import com.arkivanov.decompose.router.stack.push
+import com.arkivanov.decompose.router.stack.pop
 import com.arkivanov.decompose.value.Value
 import com.arkivanov.essenty.parcelable.Parcelable
 import com.arkivanov.essenty.parcelable.Parcelize
@@ -76,17 +76,19 @@ class RootComponentImpl(componentContext: ComponentContext) : RootComponent, Koi
         when (config) {
             Config.Search -> RootComponent.Child.SearchChild(
                 SearchComponentImpl(componentContext) {
-                    navigation.push(Config.Translation(it))
+                    navigation.bringToFront(Config.Translation(it))
                 }
             )
 
             Config.Favorite -> RootComponent.Child.FavoritesChild(
                 FavoritesComponentImpl(componentContext) {
-                    navigation.push(Config.Translation(it))
+                    navigation.bringToFront(Config.Translation(it))
                 })
 
             Config.Settings -> RootComponent.Child.SettingsChild(SettingsComponentImpl(componentContext))
-            is Config.Translation -> RootComponent.Child.TranslationChild(TranslationComponentImpl(config.id, componentContext))
+            is Config.Translation -> RootComponent.Child.TranslationChild(TranslationComponentImpl(config.id, componentContext) {
+                navigation.pop()
+            })
         }
 
     private sealed interface Config : Parcelable {

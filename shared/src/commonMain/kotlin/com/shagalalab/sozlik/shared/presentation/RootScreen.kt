@@ -11,7 +11,6 @@ import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Icon
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Search
@@ -43,9 +42,6 @@ fun RootScreen(component: RootComponent) {
     val activeComponent = childStack.active.instance
 
     Scaffold(
-        topBar = {
-            TopAppBar(title = { Text(stringResource(CommonRes.strings.app_name)) })
-        },
         bottomBar = {
             BottomNavigation {
                 BottomNavigationItem(
