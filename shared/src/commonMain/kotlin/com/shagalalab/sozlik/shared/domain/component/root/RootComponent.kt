@@ -74,10 +74,11 @@ class RootComponentImpl(componentContext: ComponentContext) : RootComponent, Koi
 
     private fun child(config: Config, componentContext: ComponentContext): RootComponent.Child =
         when (config) {
-            Config.Search -> RootComponent.Child.SearchChild(SearchComponentImpl(componentContext, itemClicked = {
-                navigation.push(Config.Translation(it))
-            }))
-
+            Config.Search -> RootComponent.Child.SearchChild(
+                SearchComponentImpl(componentContext) {
+                    navigation.push(Config.Translation(it))
+                }
+            )
             Config.Favorite -> RootComponent.Child.FavoritesChild(FavoritesComponentImpl(componentContext))
             Config.Settings -> RootComponent.Child.SettingsChild(SettingsComponentImpl(componentContext))
             is Config.Translation -> RootComponent.Child.TranslationChild(TranslationComponentImpl(config.id, componentContext))

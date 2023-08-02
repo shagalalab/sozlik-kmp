@@ -8,7 +8,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
 import kotlin.math.min
 
-//inspired from this answer https://stackoverflow.com/a/68241339
+// Based on https://stackoverflow.com/a/68241339
 
 /**
  * The tags to interpret. Add tags here and in [tagToStyle].
