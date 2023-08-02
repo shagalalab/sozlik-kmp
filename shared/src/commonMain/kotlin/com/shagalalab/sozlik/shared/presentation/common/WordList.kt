@@ -47,7 +47,7 @@ private fun WordItem(word: Dictionary, itemClick: (Long) -> Unit) {
 }
 
 @Composable
-private fun FlagFromTo(type: DictionaryType) {
+fun FlagFromTo(type: DictionaryType) {
     Row(verticalAlignment = Alignment.CenterVertically) {
         Image(
             painter = painterResource(if (type == DictionaryType.RU_QQ) CommonRes.images.flag_russia else CommonRes.images.flag_karakalpakstan),

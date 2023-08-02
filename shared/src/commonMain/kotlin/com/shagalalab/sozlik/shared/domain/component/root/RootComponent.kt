@@ -79,7 +79,12 @@ class RootComponentImpl(componentContext: ComponentContext) : RootComponent, Koi
                     navigation.push(Config.Translation(it))
                 }
             )
-            Config.Favorite -> RootComponent.Child.FavoritesChild(FavoritesComponentImpl(componentContext))
+
+            Config.Favorite -> RootComponent.Child.FavoritesChild(
+                FavoritesComponentImpl(componentContext) {
+                    navigation.push(Config.Translation(it))
+                })
+
             Config.Settings -> RootComponent.Child.SettingsChild(SettingsComponentImpl(componentContext))
             is Config.Translation -> RootComponent.Child.TranslationChild(TranslationComponentImpl(config.id, componentContext))
         }
