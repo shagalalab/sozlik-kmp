@@ -52,7 +52,6 @@ fun TranslationScreen(component: TranslationComponent, modifier: Modifier = Modi
         }
     }
 
-
     LaunchedEffect(Unit) {
         component.getTranslation()
     }

@@ -29,7 +29,7 @@ fun SearchScreen(component: SearchComponent, modifier: Modifier = Modifier) {
     val state by component.state.collectAsState()
 
     Column {
-        TopAppBar(title = { Text(stringResource(CommonRes.strings.search)) })
+        TopAppBar(title = { Text(stringResource(CommonRes.strings.app_name)) })
         OutlinedTextField(
             value = query,
             onValueChange = {
