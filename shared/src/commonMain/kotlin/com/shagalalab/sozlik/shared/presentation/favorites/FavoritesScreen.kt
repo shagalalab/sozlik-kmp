@@ -10,6 +10,7 @@ import androidx.compose.material.Divider
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.Text
+import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.runtime.Composable
@@ -19,16 +20,20 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.shagalalab.sozlik.CommonRes
 import com.shagalalab.sozlik.shared.domain.component.favorites.FavoritesComponent
 import com.shagalalab.sozlik.shared.domain.mvi.model.Dictionary
+import dev.icerock.moko.resources.compose.stringResource
 
 @Composable
 fun FavoritesScreen(component: FavoritesComponent, modifier: Modifier = Modifier) {
     val favorites by component.state.collectAsState()
-
-    LazyColumn(modifier = modifier) {
-        items(favorites.favoriteWords) { word ->
-            FavoriteItem(word, component::onFavoriteItemClicked, component::onFavoriteClicked)
+    Column {
+        TopAppBar(title = { Text(stringResource(CommonRes.strings.favorites)) })
+        LazyColumn(modifier = modifier) {
+            items(favorites.favoriteWords) { word ->
+                FavoriteItem(word, component::onFavoriteItemClicked, component::onFavoriteClicked)
+            }
         }
     }
 

@@ -14,11 +14,13 @@ interface TranslationComponent {
     fun getTranslation()
     fun onShareClick()
     fun onFavoriteClick()
+    fun onBackButtonPress()
 }
 
 class TranslationComponentImpl(
     private val translationId: Long,
-    componentContext: ComponentContext
+    componentContext: ComponentContext,
+    private val onBackPress: () -> Unit,
 ) : ComponentContext by componentContext, TranslationComponent, KoinComponent {
     private val translationStore: TranslationStore by inject()
 
@@ -34,5 +36,9 @@ class TranslationComponentImpl(
 
     override fun onFavoriteClick() {
         translationStore.dispatch(TranslateAction.FavoriteWordAction(translationId))
+    }
+
+    override fun onBackButtonPress() {
+        onBackPress()
     }
 }
