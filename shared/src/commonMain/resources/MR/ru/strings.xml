@@ -5,4 +5,7 @@
     <string name="search">Излеў</string>
     <string name="search_placeholder">Излеген сөзиңизди киритиң</string>
     <string name="settings">Сазлаўлар</string>
+    <string name="selected_language">Сайланған әлипбе</string>
+    <string name="about_us">Хаққымызда</string>
+    <string name="share">Бөлисиў</string>
 </resources>

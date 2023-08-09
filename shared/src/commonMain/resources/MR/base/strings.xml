@@ -5,4 +5,7 @@
     <string name="search">Izlew</string>
     <string name="search_placeholder">Izlegen sózińizdi kiritiń</string>
     <string name="settings">Sazlawlar</string>
+    <string name="selected_language">Saylanǵan álipbe</string>
+    <string name="about_us">Haqqımızda</string>
+    <string name="share">Bólisiw</string>
 </resources>
