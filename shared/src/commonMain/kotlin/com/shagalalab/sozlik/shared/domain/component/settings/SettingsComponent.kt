@@ -8,9 +8,10 @@ interface SettingsComponent {
     fun onClickLanguage()
 }
 
-class SettingsComponentImpl(componentContext: ComponentContext) :
-    ComponentContext by componentContext,
-    SettingsComponent {
+class SettingsComponentImpl(
+    componentContext: ComponentContext,
+) : ComponentContext by componentContext, SettingsComponent {
+
     override fun onClickShare() {
         // TODO("Not yet implemented")
     }
@@ -22,5 +23,4 @@ class SettingsComponentImpl(componentContext: ComponentContext) :
     override fun onClickLanguage() {
         // TODO("Not yet implemented")
     }
-
 }
