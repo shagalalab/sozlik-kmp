@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="about_us">Ҳаққымызда</string>
     <string name="app_name">Sózlik</string>
     <string name="favorites">Сайландылар</string>
     <string name="search">Излеў</string>
     <string name="search_placeholder">Излеген сөзиңизди киритиң</string>
+    <string name="selected_language">Сайланған әлипбе</string>
     <string name="settings">Сазлаўлар</string>
+    <string name="share">Бөлисиў</string>
 </resources>
