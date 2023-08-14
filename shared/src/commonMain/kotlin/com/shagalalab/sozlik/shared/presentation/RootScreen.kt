@@ -5,16 +5,17 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.BottomNavigation
-import androidx.compose.material.BottomNavigationItem
-import androidx.compose.material.CircularProgressIndicator
-import androidx.compose.material.Icon
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -32,6 +33,7 @@ import com.shagalalab.sozlik.shared.presentation.flow.SettingsFlowScreen
 import dev.icerock.moko.resources.compose.readTextAsState
 import dev.icerock.moko.resources.compose.stringResource
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun RootScreen(component: RootComponent) {
     val childStack by component.childStack.subscribeAsState()
@@ -42,22 +44,22 @@ fun RootScreen(component: RootComponent) {
 
     Scaffold(
         bottomBar = {
-            BottomNavigation {
-                BottomNavigationItem(
+            NavigationBar {
+                NavigationBarItem(
                     icon = { Icon(Icons.Filled.Search, contentDescription = null) },
                     label = { Text(stringResource(CommonRes.strings.search)) },
                     selected = activeComponent is RootComponent.Child.SearchFlowChild,
                     onClick = component::onSearchTabClicked,
                     enabled = !isLoading
                 )
-                BottomNavigationItem(
+                NavigationBarItem(
                     icon = { Icon(Icons.Filled.Favorite, contentDescription = null) },
                     label = { Text(stringResource(CommonRes.strings.favorites)) },
                     selected = activeComponent is RootComponent.Child.FavoritesFlowChild,
                     onClick = component::onFavoritesTabClicked,
                     enabled = !isLoading
                 )
-                BottomNavigationItem(
+                NavigationBarItem(
                     icon = { Icon(Icons.Filled.Settings, contentDescription = null) },
                     label = { Text(stringResource(CommonRes.strings.settings)) },
                     selected = activeComponent is RootComponent.Child.SettingsFlowChild,

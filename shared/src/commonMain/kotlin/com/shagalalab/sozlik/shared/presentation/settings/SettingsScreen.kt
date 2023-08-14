@@ -6,14 +6,15 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Divider
-import androidx.compose.material.Icon
-import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material.icons.outlined.List
 import androidx.compose.material.icons.outlined.Share
+import androidx.compose.material3.Divider
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -23,6 +24,7 @@ import com.shagalalab.sozlik.CommonRes
 import com.shagalalab.sozlik.shared.domain.component.settings.SettingsComponent
 import dev.icerock.moko.resources.compose.stringResource
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SettingsScreen(component: SettingsComponent, modifier: Modifier = Modifier) {
     Column(modifier) {
