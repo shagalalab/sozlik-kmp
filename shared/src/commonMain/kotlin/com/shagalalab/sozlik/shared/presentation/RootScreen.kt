@@ -26,10 +26,9 @@ import com.arkivanov.decompose.extensions.compose.jetbrains.stack.Children
 import com.arkivanov.decompose.extensions.compose.jetbrains.subscribeAsState
 import com.shagalalab.sozlik.CommonRes
 import com.shagalalab.sozlik.shared.domain.component.root.RootComponent
-import com.shagalalab.sozlik.shared.presentation.favorites.FavoritesScreen
-import com.shagalalab.sozlik.shared.presentation.search.SearchScreen
-import com.shagalalab.sozlik.shared.presentation.settings.SettingsScreen
-import com.shagalalab.sozlik.shared.presentation.translation.TranslationScreen
+import com.shagalalab.sozlik.shared.presentation.flow.FavoritesFlowScreen
+import com.shagalalab.sozlik.shared.presentation.flow.SearchFlowScreen
+import com.shagalalab.sozlik.shared.presentation.flow.SettingsFlowScreen
 import dev.icerock.moko.resources.compose.readTextAsState
 import dev.icerock.moko.resources.compose.stringResource
 
@@ -47,21 +46,21 @@ fun RootScreen(component: RootComponent) {
                 BottomNavigationItem(
                     icon = { Icon(Icons.Filled.Search, contentDescription = null) },
                     label = { Text(stringResource(CommonRes.strings.search)) },
-                    selected = activeComponent is RootComponent.Child.SearchChild,
+                    selected = activeComponent is RootComponent.Child.SearchFlowChild,
                     onClick = component::onSearchTabClicked,
                     enabled = !isLoading
                 )
                 BottomNavigationItem(
                     icon = { Icon(Icons.Filled.Favorite, contentDescription = null) },
                     label = { Text(stringResource(CommonRes.strings.favorites)) },
-                    selected = activeComponent is RootComponent.Child.FavoritesChild,
+                    selected = activeComponent is RootComponent.Child.FavoritesFlowChild,
                     onClick = component::onFavoritesTabClicked,
                     enabled = !isLoading
                 )
                 BottomNavigationItem(
                     icon = { Icon(Icons.Filled.Settings, contentDescription = null) },
                     label = { Text(stringResource(CommonRes.strings.settings)) },
-                    selected = activeComponent is RootComponent.Child.SettingsChild,
+                    selected = activeComponent is RootComponent.Child.SettingsFlowChild,
                     onClick = component::onSettingsTabClicked,
                     enabled = !isLoading
                 )
@@ -74,10 +73,9 @@ fun RootScreen(component: RootComponent) {
             stack = childStack
         ) {
             when (val child = it.instance) {
-                is RootComponent.Child.SearchChild -> SearchScreen(child.component, padding)
-                is RootComponent.Child.FavoritesChild -> FavoritesScreen(child.component, padding)
-                is RootComponent.Child.SettingsChild -> SettingsScreen(child.component, padding)
-                is RootComponent.Child.TranslationChild -> TranslationScreen(child.component, padding)
+                is RootComponent.Child.SearchFlowChild -> SearchFlowScreen(child.component, padding)
+                is RootComponent.Child.FavoritesFlowChild -> FavoritesFlowScreen(child.component, padding)
+                is RootComponent.Child.SettingsFlowChild -> SettingsFlowScreen(child.component, padding)
             }
         }
 
