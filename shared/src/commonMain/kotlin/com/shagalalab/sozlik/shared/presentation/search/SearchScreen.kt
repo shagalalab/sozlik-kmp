@@ -1,5 +1,6 @@
 package com.shagalalab.sozlik.shared.presentation.search
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -17,11 +18,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import com.shagalalab.sozlik.CommonRes
 import com.shagalalab.sozlik.shared.domain.component.search.SearchComponent
 import com.shagalalab.sozlik.shared.presentation.common.WordList
+import com.shagalalab.sozlik.shared.util.parseHtml
 import dev.icerock.moko.resources.compose.stringResource
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -49,6 +52,15 @@ fun SearchScreen(component: SearchComponent, modifier: Modifier = Modifier) {
             },
             keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
         )
-        WordList(state.suggestions, modifier, component::onSearchItemClicked)
+        if (state.isSuggested && state.suggestions.isNotEmpty()) {
+            val annotatedString = "<b>${state.query}</b> ${stringResource(CommonRes.strings.suggestion_found)}".parseHtml()
+            Text(modifier = Modifier.background(Color.LightGray.copy(alpha = 0.7f)).padding(16.dp).fillMaxWidth(), text = annotatedString)
+        }
+        if (state.suggestions.isEmpty() && state.query.isNotEmpty()) {
+            val annotatedString = "<b>${state.query}</b> ${stringResource(CommonRes.strings.suggestion_not_found)}".parseHtml()
+            Text(modifier = Modifier.background(Color.LightGray.copy(alpha = 0.7f)).padding(16.dp).fillMaxWidth(), text = annotatedString)
+        } else {
+            WordList(state.suggestions, modifier, component::onSearchItemClicked)
+        }
     }
 }

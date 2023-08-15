@@ -12,6 +12,8 @@ import com.shagalalab.sozlik.shared.domain.mvi.feature.translate.TranslationStor
 import com.shagalalab.sozlik.shared.domain.mvi.feature.populate.DbPopulateStore
 import com.shagalalab.sozlik.shared.domain.mvi.feature.search.SearchStore
 import com.shagalalab.sozlik.shared.domain.repository.DictionaryRepository
+import com.shagalalab.sozlik.shared.domain.spelchecker.SpellChecker
+import com.shagalalab.sozlik.shared.domain.spelchecker.WordHolder
 import org.koin.core.context.startKoin
 import org.koin.core.module.Module
 import org.koin.dsl.KoinAppDeclaration
@@ -35,9 +37,10 @@ private val commonModule = module {
     single { Settings() }
     single<DbPopulatedKeyValue> { DbPopulatedKeyValueImpl(get()) }
     single { DbPopulateStore(get(), get()) }
-    single { SearchStore(get()) }
+    single { SearchStore(get(), get()) }
     single { TranslationStore(get()) }
     single { FavoritesStore(get()) }
+    single { SpellChecker(WordHolder.wordMap, get()) }
 }
 
 internal expect val platformModule: Module

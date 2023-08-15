@@ -11,4 +11,5 @@ interface DictionaryRepository {
     suspend fun updateFavorite(id: Long, isFavorite: Boolean)
     suspend fun updateLastAccessTime(id: Long, lastAccessed: Long)
     suspend fun save(data: List<Dictionary>)
+    suspend fun getAllTranslations(): Result<List<Dictionary>>
 }

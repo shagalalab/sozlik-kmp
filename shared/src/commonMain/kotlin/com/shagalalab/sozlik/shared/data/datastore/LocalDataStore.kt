@@ -39,4 +39,7 @@ class LocalDataStore(private val database: SozlikDatabase) {
             }
         }
     }
+
+    fun getAllTranslations(): List<DictionaryDb> =
+        database.dictionaryDbQueries.selectAll().executeAsList()
 }

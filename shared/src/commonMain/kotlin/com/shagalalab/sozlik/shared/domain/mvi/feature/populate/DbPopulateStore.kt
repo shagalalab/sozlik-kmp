@@ -8,6 +8,7 @@ import com.shagalalab.sozlik.shared.domain.mvi.base.Store
 import com.shagalalab.sozlik.shared.domain.mvi.model.Dictionary
 import com.shagalalab.sozlik.shared.domain.mvi.model.DictionaryType
 import com.shagalalab.sozlik.shared.domain.repository.DictionaryRepository
+import com.shagalalab.sozlik.shared.domain.spelchecker.WordHolder
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.MainScope
 import kotlinx.serialization.json.Json
@@ -22,6 +23,7 @@ class DbPopulateStore(
         return when (action) {
             is DbPopulateAction.DbPopulateCheck -> {
                 if (keyValue.isDbPopulated) {
+                    WordHolder.setWordMap(repository.getAllTranslations().getOrDefault(emptyList()))
                     oldState
                 } else {
                     emitState(oldState.copy(isLoading = true))
@@ -53,12 +55,14 @@ class DbPopulateStore(
                             repository.save(ruQqDomain)
 
                             keyValue.updateDbPopulated()
-
+                            WordHolder.setWordMap(repository.getAllTranslations().getOrDefault(emptyList()))
                             oldState.copy(isLoading = false)
                         } catch (e: Exception) {
+                            WordHolder.setWordMap(repository.getAllTranslations().getOrDefault(emptyList()))
                             oldState.copy(isLoading = false, error = e.message)
                         }
                     } else {
+                        WordHolder.setWordMap(repository.getAllTranslations().getOrDefault(emptyList()))
                         oldState.copy(isLoading = false)
                     }
                 }

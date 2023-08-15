@@ -13,6 +13,7 @@ data class SearchState(
     val isLoading: Boolean = false,
     val query: String = "",
     val suggestions: List<Dictionary> = listOf(),
+    val isSuggested: Boolean = false,
     val errorMessage: String? = null,
 ) : State
 

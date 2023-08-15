@@ -43,4 +43,9 @@ class DictionaryRepositoryImpl(private val dataStore: LocalDataStore): Dictionar
     override suspend fun save(data: List<Dictionary>) {
         dataStore.insertData(data.map { it.toDb() })
     }
+
+    override suspend fun getAllTranslations(): Result<List<Dictionary>> =
+        asResult {
+            dataStore.getAllTranslations().map { it.toDomain() }
+        }
 }

@@ -8,4 +8,7 @@
     <string name="selected_language">Сайланған әлипбе</string>
     <string name="settings">Сазлаўлар</string>
     <string name="share">Бөлисиў</string>
+    <string name="suggestion_found">сөзи табылмады, бәлким төмендегилерди излеген шығарсыз.</string>
+    <string name="suggestion_not_found">сөзи бойынша нәтийжелер табылмады.</string>
+
 </resources>
