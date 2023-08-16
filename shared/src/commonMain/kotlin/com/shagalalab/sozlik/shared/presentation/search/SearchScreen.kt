@@ -25,7 +25,9 @@ import com.shagalalab.sozlik.CommonRes
 import com.shagalalab.sozlik.shared.domain.component.search.SearchComponent
 import com.shagalalab.sozlik.shared.presentation.common.WordList
 import com.shagalalab.sozlik.shared.util.parseHtml
+import dev.icerock.moko.resources.compose.localized
 import dev.icerock.moko.resources.compose.stringResource
+import dev.icerock.moko.resources.format
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -53,12 +55,16 @@ fun SearchScreen(component: SearchComponent, modifier: Modifier = Modifier) {
             keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
         )
         if (state.isSuggested && state.suggestions.isNotEmpty()) {
-            val annotatedString = "<b>${state.query}</b> ${stringResource(CommonRes.strings.suggestion_found)}".parseHtml()
-            Text(modifier = Modifier.background(Color.LightGray.copy(alpha = 0.7f)).padding(16.dp).fillMaxWidth(), text = annotatedString)
+            Text(
+                CommonRes.strings.suggestion_found.format(state.query).localized().parseHtml(),
+                modifier = Modifier.background(Color.LightGray.copy(alpha = 0.7f)).padding(16.dp).fillMaxWidth()
+            )
         }
         if (state.suggestions.isEmpty() && state.query.isNotEmpty()) {
-            val annotatedString = "<b>${state.query}</b> ${stringResource(CommonRes.strings.suggestion_not_found)}".parseHtml()
-            Text(modifier = Modifier.background(Color.LightGray.copy(alpha = 0.7f)).padding(16.dp).fillMaxWidth(), text = annotatedString)
+            Text(
+                CommonRes.strings.suggestion_not_found.format(state.query).localized().parseHtml(),
+                modifier = Modifier.background(Color.LightGray.copy(alpha = 0.7f)).padding(16.dp).fillMaxWidth()
+            )
         } else {
             WordList(state.suggestions, modifier, component::onSearchItemClicked)
         }
