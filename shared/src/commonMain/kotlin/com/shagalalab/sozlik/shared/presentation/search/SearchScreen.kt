@@ -27,7 +27,6 @@ import com.shagalalab.sozlik.shared.presentation.common.WordList
 import com.shagalalab.sozlik.shared.util.parseHtml
 import dev.icerock.moko.resources.compose.localized
 import dev.icerock.moko.resources.compose.stringResource
-import dev.icerock.moko.resources.format
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -54,19 +53,12 @@ fun SearchScreen(component: SearchComponent, modifier: Modifier = Modifier) {
             },
             keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
         )
-        if (state.isSuggested && state.suggestions.isNotEmpty()) {
+        state.message?.let {
             Text(
-                CommonRes.strings.suggestion_found.format(state.query).localized().parseHtml(),
+                it.localized().parseHtml(),
                 modifier = Modifier.background(Color.LightGray.copy(alpha = 0.7f)).padding(16.dp).fillMaxWidth()
             )
         }
-        if (state.suggestions.isEmpty() && state.query.isNotEmpty()) {
-            Text(
-                CommonRes.strings.suggestion_not_found.format(state.query).localized().parseHtml(),
-                modifier = Modifier.background(Color.LightGray.copy(alpha = 0.7f)).padding(16.dp).fillMaxWidth()
-            )
-        } else {
-            WordList(state.suggestions, modifier, component::onSearchItemClicked)
-        }
+        WordList(state.suggestions, modifier, component::onSearchItemClicked)
     }
 }

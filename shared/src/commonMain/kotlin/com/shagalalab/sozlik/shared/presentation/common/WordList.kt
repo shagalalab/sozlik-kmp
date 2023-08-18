@@ -21,12 +21,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import com.shagalalab.sozlik.CommonRes
-import com.shagalalab.sozlik.shared.domain.mvi.model.Dictionary
+import com.shagalalab.sozlik.shared.domain.mvi.model.DictionaryBase
 import com.shagalalab.sozlik.shared.domain.mvi.model.DictionaryType
 import dev.icerock.moko.resources.compose.painterResource
 
 @Composable
-fun WordList(words: List<Dictionary>, modifier: Modifier, itemClick: (Long) -> Unit) {
+fun WordList(words: List<DictionaryBase>, modifier: Modifier, itemClick: (Long) -> Unit) {
     LazyColumn(modifier = modifier) {
         items(words) { word ->
             WordItem(word, itemClick)
@@ -35,7 +35,7 @@ fun WordList(words: List<Dictionary>, modifier: Modifier, itemClick: (Long) -> U
 }
 
 @Composable
-private fun WordItem(word: Dictionary, itemClick: (Long) -> Unit) {
+private fun WordItem(word: DictionaryBase, itemClick: (Long) -> Unit) {
     Column(modifier = Modifier.clickable { itemClick(word.id) }) {
         Row(modifier = Modifier.padding(horizontal = 16.dp), verticalAlignment = Alignment.CenterVertically) {
             Text(word.word, modifier = Modifier.padding(vertical = 12.dp).weight(1f))
