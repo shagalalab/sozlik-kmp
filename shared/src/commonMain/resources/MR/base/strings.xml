@@ -10,4 +10,6 @@
     <string name="selected_language">Saylanǵan álipbe</string>
     <string name="settings">Sazlawlar</string>
     <string name="share">Bólisiw</string>
+    <string name="suggestion_found">&lt;b&gt;%s&lt;/b&gt; sózi tabılmadı, bálkim tómendegilerdi izlegen shıǵarsız:</string>
+    <string name="suggestion_not_found">&lt;b&gt;%s&lt;/b&gt; sózi boyınsha nátiyjeler tabılmadı.</string>
 </resources>

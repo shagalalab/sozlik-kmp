@@ -1,18 +1,23 @@
 package com.shagalalab.sozlik.shared.data.datastore
 
 import com.shagalalab.sozlik.DictionaryDb
+import com.shagalalab.sozlik.SelectAll
+import com.shagalalab.sozlik.SelectByWord
+import com.shagalalab.sozlik.SelectLike
 import com.shagalalab.sozlik.SozlikDatabase
 
 class LocalDataStore(private val database: SozlikDatabase) {
-    fun getItem(word: String): DictionaryDb {
-        return database.dictionaryDbQueries.selectByWord(word).executeAsOne()
+    fun getAllItems(): List<SelectAll> = database.dictionaryDbQueries.selectAll().executeAsList()
+
+    fun getItem(word: String): SelectByWord? {
+        return database.dictionaryDbQueries.selectByWord(word).executeAsOneOrNull()
     }
 
     fun getItem(id: Long): DictionaryDb {
         return database.dictionaryDbQueries.selectById(id).executeAsOne()
     }
 
-    fun getItemsLike(word: String): List<DictionaryDb> {
+    fun getItemsLike(word: String): List<SelectLike> {
         return database.dictionaryDbQueries.selectLike(word).executeAsList()
     }
 

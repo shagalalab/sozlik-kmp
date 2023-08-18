@@ -8,10 +8,11 @@ import com.shagalalab.sozlik.shared.data.keyvalue.DbPopulatedKeyValue
 import com.shagalalab.sozlik.shared.data.keyvalue.DbPopulatedKeyValueImpl
 import com.shagalalab.sozlik.shared.data.repository.DictionaryRepositoryImpl
 import com.shagalalab.sozlik.shared.domain.mvi.feature.favorites.FavoritesStore
-import com.shagalalab.sozlik.shared.domain.mvi.feature.translate.TranslationStore
 import com.shagalalab.sozlik.shared.domain.mvi.feature.populate.DbPopulateStore
 import com.shagalalab.sozlik.shared.domain.mvi.feature.search.SearchStore
+import com.shagalalab.sozlik.shared.domain.mvi.feature.translate.TranslationStore
 import com.shagalalab.sozlik.shared.domain.repository.DictionaryRepository
+import com.shagalalab.sozlik.shared.data.spellchecker.SpellChecker
 import org.koin.core.context.startKoin
 import org.koin.core.module.Module
 import org.koin.dsl.KoinAppDeclaration
@@ -31,13 +32,14 @@ private val allModules: Module
 private val commonModule = module {
     single { SozlikDatabase(get<SqldelightDriver>().driver) }
     single { LocalDataStore(get()) }
-    single<DictionaryRepository> { DictionaryRepositoryImpl(get()) }
+    single<DictionaryRepository> { DictionaryRepositoryImpl(get(), get()) }
     single { Settings() }
     single<DbPopulatedKeyValue> { DbPopulatedKeyValueImpl(get()) }
     single { DbPopulateStore(get(), get()) }
     single { SearchStore(get()) }
     single { TranslationStore(get()) }
     single { FavoritesStore(get()) }
+    single { SpellChecker() }
 }
 
 internal expect val platformModule: Module

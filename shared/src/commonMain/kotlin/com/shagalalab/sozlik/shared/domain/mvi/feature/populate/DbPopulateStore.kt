@@ -39,7 +39,7 @@ class DbPopulateStore(
                                     translation = dict.translation
                                 )
                             }
-                            repository.save(qqEnDomain)
+                            repository.insert(qqEnDomain)
 
                             val ruQqDomain = ruQqDeserialized.map { dict ->
                                 Dictionary(
@@ -50,10 +50,9 @@ class DbPopulateStore(
                                     rawWord = dict.word
                                 )
                             }
-                            repository.save(ruQqDomain)
+                            repository.insert(ruQqDomain)
 
                             keyValue.updateDbPopulated()
-
                             oldState.copy(isLoading = false)
                         } catch (e: Exception) {
                             oldState.copy(isLoading = false, error = e.message)

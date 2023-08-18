@@ -1,5 +1,11 @@
 package com.shagalalab.sozlik.shared.domain.mvi.model
 
+data class DictionaryBase(
+    val id: Long,
+    val type: DictionaryType,
+    val word: String
+)
+
 data class Dictionary(
     val id: Long,
     val type: DictionaryType,

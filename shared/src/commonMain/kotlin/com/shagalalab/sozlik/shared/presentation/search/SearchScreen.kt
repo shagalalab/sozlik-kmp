@@ -1,5 +1,6 @@
 package com.shagalalab.sozlik.shared.presentation.search
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -17,11 +18,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import com.shagalalab.sozlik.CommonRes
 import com.shagalalab.sozlik.shared.domain.component.search.SearchComponent
 import com.shagalalab.sozlik.shared.presentation.common.WordList
+import com.shagalalab.sozlik.shared.util.parseHtml
+import dev.icerock.moko.resources.compose.localized
 import dev.icerock.moko.resources.compose.stringResource
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -49,6 +53,12 @@ fun SearchScreen(component: SearchComponent, modifier: Modifier = Modifier) {
             },
             keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
         )
+        state.message?.let {
+            Text(
+                it.localized().parseHtml(),
+                modifier = Modifier.background(Color.LightGray.copy(alpha = 0.7f)).padding(16.dp).fillMaxWidth()
+            )
+        }
         WordList(state.suggestions, modifier, component::onSearchItemClicked)
     }
 }
