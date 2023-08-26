@@ -6,7 +6,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.Bookmark
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.CircularProgressIndicator
@@ -53,7 +53,7 @@ fun RootScreen(component: RootComponent) {
                     enabled = !isLoading
                 )
                 NavigationBarItem(
-                    icon = { Icon(Icons.Filled.Favorite, contentDescription = null) },
+                    icon = { Icon(Icons.Filled.Bookmark, contentDescription = null) },
                     label = { Text(stringResource(CommonRes.strings.favorites)) },
                     selected = activeComponent is RootComponent.Child.FavoritesFlowChild,
                     onClick = component::onFavoritesTabClicked,

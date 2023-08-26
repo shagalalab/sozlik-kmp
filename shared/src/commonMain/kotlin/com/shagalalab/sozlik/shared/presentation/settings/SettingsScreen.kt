@@ -8,8 +8,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Info
-import androidx.compose.material.icons.outlined.List
 import androidx.compose.material.icons.outlined.Share
+import androidx.compose.material.icons.outlined.Translate
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -29,7 +29,7 @@ import dev.icerock.moko.resources.compose.stringResource
 fun SettingsScreen(component: SettingsComponent, modifier: Modifier = Modifier) {
     Column(modifier) {
         TopAppBar(title = { Text(stringResource(CommonRes.strings.settings)) })
-        SettingsItem(Icons.Outlined.List, stringResource(CommonRes.strings.selected_language), value = stringResource(CommonRes.strings.layout_latin), onClick = component::onClickLanguage)
+        SettingsItem(Icons.Outlined.Translate, stringResource(CommonRes.strings.selected_language), value = stringResource(CommonRes.strings.layout_latin), onClick = component::onClickLanguage)
         SettingsItem(Icons.Outlined.Info, stringResource(CommonRes.strings.about_us), onClick = component::onClickAboutUs)
         SettingsItem(Icons.Outlined.Share, stringResource(CommonRes.strings.share), onClick = component::onClickShare)
     }
