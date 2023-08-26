@@ -5,8 +5,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material.icons.outlined.FavoriteBorder
+import androidx.compose.material.icons.filled.Bookmark
+import androidx.compose.material.icons.outlined.BookmarkBorder
 import androidx.compose.material.icons.outlined.Share
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -38,7 +38,7 @@ fun TranslationScreen(component: TranslationComponent, modifier: Modifier = Modi
             title = {},
             actions = {
                 IconButton(onClick = component::onFavoriteClick) {
-                    Icon(if (state.isFavorite) Icons.Filled.Favorite else Icons.Outlined.FavoriteBorder, contentDescription = null)
+                    Icon(if (state.isFavorite) Icons.Filled.Bookmark else Icons.Outlined.BookmarkBorder, contentDescription = null)
                 }
                 IconButton(onClick = {}) {
                     Icon(Icons.Outlined.Share, contentDescription = null)
