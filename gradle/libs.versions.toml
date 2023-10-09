@@ -11,7 +11,7 @@ koin = "3.5.0"
 kotlin = "1.8.20"
 moko = "0.23.0"
 serialization = "1.6.0"
-settings = "1.0.0"
+settings = "1.1.0"
 sqldelight = "1.5.5"
 
 [libraries]
