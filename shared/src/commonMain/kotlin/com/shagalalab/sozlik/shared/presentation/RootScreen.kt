@@ -10,7 +10,6 @@ import androidx.compose.material.icons.filled.Bookmark
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -33,7 +32,6 @@ import com.shagalalab.sozlik.shared.presentation.flow.SettingsFlowScreen
 import dev.icerock.moko.resources.compose.readTextAsState
 import dev.icerock.moko.resources.compose.stringResource
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun RootScreen(component: RootComponent) {
     val childStack by component.childStack.subscribeAsState()
