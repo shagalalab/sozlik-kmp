@@ -5,6 +5,8 @@
     <string name="favorites">Сайландылар</string>
     <string name="search">Излеў</string>
     <string name="search_placeholder">Излеген сөзиңизди киритиң</string>
+    <string name="select_app_layout">Жазыў түрин таңлаң</string>
+    <string name="select_app_layout_description">Еслетпе: жазыў түрине киргизилген өзгерис әмелде ислеўи ушын, бағдарламаны қайтадан иске қосыў (restart) талап етиледи.</string>
     <string name="selected_language">Сайланған әлипбе</string>
     <string name="settings">Сазлаўлар</string>
     <string name="share">Бөлисиў</string>
