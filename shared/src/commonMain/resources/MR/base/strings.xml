@@ -7,6 +7,8 @@
     <string name="layout_latin">Latın</string>
     <string name="search">Izlew</string>
     <string name="search_placeholder">Izlegen sózińizdi kiritiń</string>
+    <string name="select_app_layout">Jazıw túrin tańlań</string>
+    <string name="select_app_layout_description">Esletpe: jazıw túrine kirgizilgen ózgeris ámelde islewi ushın, baǵdarlamanı qaytadan iske qosıw (restart) talap etiledi.</string>
     <string name="selected_language">Saylanǵan álipbe</string>
     <string name="settings">Sazlawlar</string>
     <string name="share">Bólisiw</string>

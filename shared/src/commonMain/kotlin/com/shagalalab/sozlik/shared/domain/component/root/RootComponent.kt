@@ -16,6 +16,8 @@ import com.shagalalab.sozlik.shared.domain.component.flow.SettingsFlowComponent
 import com.shagalalab.sozlik.shared.domain.component.flow.SettingsFlowComponentImpl
 import com.shagalalab.sozlik.shared.domain.mvi.feature.populate.DbPopulateAction
 import com.shagalalab.sozlik.shared.domain.mvi.feature.populate.DbPopulateStore
+import com.shagalalab.sozlik.shared.domain.repository.SettingsRepository
+import dev.icerock.moko.resources.desc.StringDesc
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import org.koin.core.component.KoinComponent
@@ -39,6 +41,7 @@ interface RootComponent {
 
 class RootComponentImpl(componentContext: ComponentContext) : RootComponent, KoinComponent, ComponentContext by componentContext {
     private val dbPopulateStore: DbPopulateStore by inject()
+    private val settingsRepository: SettingsRepository by inject()
     private val navigation = StackNavigation<Config>()
 
     private val stack = childStack(
@@ -51,6 +54,11 @@ class RootComponentImpl(componentContext: ComponentContext) : RootComponent, Koi
     override val childStack: Value<ChildStack<*, RootComponent.Child>> = stack
 
     override val isLoading: Flow<Boolean> = dbPopulateStore.stateFlow.map { it.isLoading }
+
+    init {
+        // setting locale
+        StringDesc.localeType = StringDesc.LocaleType.Custom(settingsRepository.getSelectedLocale())
+    }
 
     override fun onSearchTabClicked() {
         navigation.bringToFront(Config.SearchFlow)
