@@ -10,7 +10,7 @@ plugins {
 }
 
 kotlin {
-    android()
+    androidTarget()
 
     jvm("desktop")
 
@@ -54,6 +54,7 @@ kotlin {
             }
         }
         val androidMain by getting {
+            dependsOn(commonMain) // shouldn't be needed after moko-resources support kotlin 1.9
             dependencies {
                 api(libs.appcompat)
                 api(libs.compose.activity)
@@ -73,6 +74,7 @@ kotlin {
             }
         }
         val desktopMain by getting {
+            dependsOn(commonMain) // shouldn't be needed after moko-resources support kotlin 1.9
             dependencies {
                 implementation(compose.desktop.common)
                 implementation(libs.coroutines.swing)
@@ -86,13 +88,16 @@ android {
     compileSdk = libs.versions.android.compile.sdk.get().toInt()
     namespace = "com.shagalalab.sozlik.common"
 
-    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
-    sourceSets["main"].res.srcDirs("src/androidMain/res")
-    sourceSets["main"].resources.srcDirs("src/commonMain/resources")
+    sourceSets {
+        getByName("main") {
+            manifest.srcFile("src/androidMain/AndroidManifest.xml")
+            res.srcDirs("src/androidMain/res")
+            resources.srcDirs("src/commonMain/resources")
+        }
+    }
 
     defaultConfig {
         minSdk = libs.versions.android.min.sdk.get().toInt()
-        targetSdk = libs.versions.android.target.sdk.get().toInt()
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
