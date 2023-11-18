@@ -39,6 +39,7 @@ import com.shagalalab.sozlik.CommonRes
 import com.shagalalab.sozlik.shared.domain.component.settings.SettingsComponent
 import com.shagalalab.sozlik.shared.domain.component.settings.about.SettingsAboutComponent
 import com.shagalalab.sozlik.shared.domain.component.settings.layout.SettingsLayoutComponent
+import com.shagalalab.sozlik.shared.util.isSettingsShareEnabled
 import com.shagalalab.sozlik.shared.util.parseHtml
 import dev.icerock.moko.resources.compose.stringResource
 
@@ -58,7 +59,9 @@ fun SettingsScreen(component: SettingsComponent, modifier: Modifier = Modifier) 
                 onClick = component::onClickLayout
             )
             SettingsItem(Icons.Outlined.Info, stringResource(CommonRes.strings.about), onClick = component::onClickAbout)
-            SettingsItem(Icons.Outlined.Share, stringResource(CommonRes.strings.share), onClick = component::onClickShare)
+            if (isSettingsShareEnabled) {
+                SettingsItem(Icons.Outlined.Share, stringResource(CommonRes.strings.share), onClick = component::onClickShare)
+            }
         }
 
         dialogSlot.child?.instance?.also { itemComponent ->
