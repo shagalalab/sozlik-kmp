@@ -9,6 +9,7 @@
     </string>
     <string name="app_name">Sózlik</string>
     <string name="favorites">Saylandılar</string>
+    <string name="favorites_empty">Siz ele hesh bir sózdi saylandılar qatarına qospadıńız, qosqanlarıńız usı jerde kórinedi.</string>
     <string name="layout_cyrillic">Кирилл</string>
     <string name="layout_latin">Latın</string>
     <string name="search">Izlew</string>

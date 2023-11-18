@@ -10,6 +10,7 @@
     </string>
     <string name="app_name">Sózlik</string>
     <string name="favorites">Сайландылар</string>
+    <string name="favorites_empty">Сиз еле ҳеш бир сөзди сайландылар қатарына қоспадыңыз, қосқанларыңыз усы жерде көринеди.</string>
     <string name="search">Излеў</string>
     <string name="search_placeholder">Излеген сөзиңизди киритиң</string>
     <string name="select_app_layout">Жазыў түрин таңлаң</string>
