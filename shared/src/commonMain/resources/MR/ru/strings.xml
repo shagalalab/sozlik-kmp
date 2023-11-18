@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="about_us">Ҳаққымызда</string>
+    <string name="about">Ҳаққында</string>
+    <string name="about_content">
+        <![CDATA[Sózlik бағдарламасы <b>Shaǵala Lab</b> топары тәрепинен ислеп шығылды. Топардың басқа жумыслары менен <u>www.shagalalab.com</u> сайтында танысыў имкәниятына ийесиз.
+        \n\nБағдарлама:
+        \n- 1970-жылы В.Д.Аракин редакторлығында "Қарақалпақстан" баспасынан шыққан "қарақалпақша-англичанша сөзлик"
+        \n- 1967-жылы Н.А.Баскаков редакторлығында "Советская Энциклопедия" баспасынан шыққан "русша-қарақалпақша сөзлик"
+        \nкитапларына тийкарланған.]]>
+    </string>
     <string name="app_name">Sózlik</string>
     <string name="favorites">Сайландылар</string>
     <string name="search">Излеў</string>
     <string name="search_placeholder">Излеген сөзиңизди киритиң</string>
     <string name="select_app_layout">Жазыў түрин таңлаң</string>
-    <string name="select_app_layout_description">Еслетпе: жазыў түрине киргизилген өзгерис әмелде ислеўи ушын, бағдарламаны қайтадан иске қосыў (restart) талап етиледи.</string>
+    <string name="select_app_layout_description">Еслетпе: жазыў түрине киргизилген өзгерис әмелде ислеўи ушын, бағдарламаны қайтадан иске қосыў (restart) талап етилиўи мүмкин.</string>
     <string name="selected_language">Сайланған әлипбе</string>
     <string name="settings">Сазлаўлар</string>
     <string name="share">Бөлисиў</string>

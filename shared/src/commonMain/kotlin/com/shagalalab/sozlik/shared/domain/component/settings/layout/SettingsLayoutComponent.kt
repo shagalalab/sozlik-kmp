@@ -1,21 +1,22 @@
-package com.shagalalab.sozlik.shared.domain.component.settings
+package com.shagalalab.sozlik.shared.domain.component.settings.layout
 
 import com.arkivanov.decompose.ComponentContext
+import com.shagalalab.sozlik.shared.domain.component.settings.SettingsItemComponent
 
-interface SettingsLanguageComponent {
+interface SettingsLayoutComponent: SettingsItemComponent {
     val layoutOptions: List<String>
     val defaultOption: String
     fun onDismissClicked()
     fun onOptionSelected(option: String)
 }
 
-class SettingsLanguageComponentImpl(
+class SettingsLayoutComponentImpl(
     private val componentContext: ComponentContext,
     override val layoutOptions: List<String>,
     override val defaultOption: String,
     private val onOptionChanged: (String) -> Unit,
     private val onDismissed: () -> Unit,
-) : SettingsLanguageComponent, ComponentContext by componentContext {
+) : SettingsLayoutComponent, ComponentContext by componentContext {
 
     override fun onDismissClicked() {
         onDismissed()
