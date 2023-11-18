@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.selection.selectableGroup
+import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material.icons.outlined.Share
@@ -29,12 +30,16 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.unit.dp
 import com.arkivanov.decompose.extensions.compose.jetbrains.subscribeAsState
 import com.shagalalab.sozlik.CommonRes
 import com.shagalalab.sozlik.shared.domain.component.settings.SettingsComponent
-import com.shagalalab.sozlik.shared.domain.component.settings.SettingsLanguageComponent
+import com.shagalalab.sozlik.shared.domain.component.settings.about.SettingsAboutComponent
+import com.shagalalab.sozlik.shared.domain.component.settings.layout.SettingsLayoutComponent
+import com.shagalalab.sozlik.shared.util.parseHtml
 import dev.icerock.moko.resources.compose.stringResource
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -52,13 +57,20 @@ fun SettingsScreen(component: SettingsComponent, modifier: Modifier = Modifier) 
                 value = selectedOption,
                 onClick = component::onClickLayout
             )
-            SettingsItem(Icons.Outlined.Info, stringResource(CommonRes.strings.about_us), onClick = component::onClickAboutUs)
+            SettingsItem(Icons.Outlined.Info, stringResource(CommonRes.strings.about), onClick = component::onClickAbout)
             SettingsItem(Icons.Outlined.Share, stringResource(CommonRes.strings.share), onClick = component::onClickShare)
         }
 
-        dialogSlot.child?.instance?.also { languageComponent ->
-            SelectLayoutDialog(languageComponent, selectedOption) {
-                selectedOption = it
+        dialogSlot.child?.instance?.also { itemComponent ->
+            when (itemComponent) {
+                is SettingsLayoutComponent -> {
+                    SelectLayoutDialog(itemComponent, selectedOption) {
+                        selectedOption = it
+                    }
+                }
+                is SettingsAboutComponent -> {
+                    SelectAboutDialog(itemComponent)
+                }
             }
         }
     }
@@ -82,7 +94,7 @@ private fun SettingsItem(icon: ImageVector, label: String, value: String = "", m
 }
 
 @Composable
-fun SelectLayoutDialog(component: SettingsLanguageComponent, selectedOption: String, onSelectedOptionChanged: (String) -> Unit) {
+fun SelectLayoutDialog(component: SettingsLayoutComponent, selectedOption: String, onSelectedOptionChanged: (String) -> Unit) {
     AlertDialog(
         onDismissRequest = { component.onDismissClicked() },
         confirmButton = {},
@@ -122,6 +134,41 @@ fun SelectLayoutDialog(component: SettingsLanguageComponent, selectedOption: Str
                     }
                 }
                 Text(text = stringResource(CommonRes.strings.select_app_layout_description))
+            }
+        }
+    )
+}
+
+@Composable
+fun SelectAboutDialog(component: SettingsAboutComponent) {
+    val uriHandler = LocalUriHandler.current
+    val shagalalabUrl = "www.shagalalab.com"
+
+    AlertDialog(
+        onDismissRequest = { component.onDismissClicked() },
+        confirmButton = {},
+        title = {
+            Text(text = stringResource(CommonRes.strings.about))
+        },
+        text = {
+            val parsedAboutString = stringResource(CommonRes.strings.about_content).parseHtml()
+            val annotatedAboutStringWithUrl = buildAnnotatedString {
+                append(parsedAboutString)
+                // attach a string annotation that stores a URL to the text "Jetpack Compose".
+                addStringAnnotation(
+                    tag = "URL",
+                    annotation = "https://$shagalalabUrl",
+                    start = parsedAboutString.indexOf(shagalalabUrl),
+                    end = parsedAboutString.indexOf(shagalalabUrl) + shagalalabUrl.length
+                )
+            }
+
+            ClickableText(annotatedAboutStringWithUrl) { offset ->
+                annotatedAboutStringWithUrl
+                    .getStringAnnotations("URL", offset, offset)
+                    .firstOrNull()?.let { stringAnnotation ->
+                        uriHandler.openUri(stringAnnotation.item)
+                    }
             }
         }
     )
